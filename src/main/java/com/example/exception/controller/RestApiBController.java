@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 
 @Slf4j
 @RestController
@@ -19,9 +21,9 @@ public class RestApiBController {
         throw new NumberFormatException("number format exception");
     }
 
- /*   @ExceptionHandler(value = { NumberFormatException.class}) //핸들러를 이쪽에 달아주게 되면 글로벌로 가지 않고 여기서 해결함
-    public ResponseEntity numberFormatException(NumberFormatException e){
+   @ExceptionHandler(value = { IOException.class}) //핸들러를 이쪽에 달아주게 되면 글로벌로 가지 않고 여기서 해결함
+    public ResponseEntity ioException(IOException e){
         log.error("RestApiBController",e);
         return ResponseEntity.ok().build();
-    }*/
+    }
 }

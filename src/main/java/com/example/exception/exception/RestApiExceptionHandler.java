@@ -7,6 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.text.ParseException;
+
 @Slf4j
 //@RestControllerAdvice(basePackages = "com.example.exception.controller") // rest api를 사용하는 곳에 예외가 일어나는 것을 감지, 모든 컨트롤러에서 나오는 예외를 잡아줌
 //basePackages : 지정된 경로의 예외까지 잡겠다.
@@ -26,6 +29,11 @@ public class RestApiExceptionHandler {
     @ExceptionHandler(value = { IndexOutOfBoundsException.class })
     public ResponseEntity outOfBound( IndexOutOfBoundsException e){
         log.error("IndexOutOfBoundsException", e);
+        return ResponseEntity.status(200).build();
+    }
+    @ExceptionHandler (value = { ParseException.class})
+    public ResponseEntity parseException( ParseException e){
+        log.error("parseException :" ,e);
         return ResponseEntity.status(200).build();
     }
 }
