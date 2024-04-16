@@ -38,7 +38,7 @@ public class UserApiController {
     public Api<UserResponse> getUser(@PathVariable String userId){ //어노테이션 달고 파라미터는 위 {userId} 와 이름이 같아야 매핑됨
         if(true){ //global excep위한
            throw new RuntimeException("Runtime");
-        }
+        } //삭제시 정상 작동
 
         var user = userList.stream().filter(
                 //it : 유저 리스트에 들어있는 빌더로 만들어진 객체
