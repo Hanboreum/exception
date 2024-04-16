@@ -41,12 +41,16 @@ public class RestApiExceptionHandler {
     }
 
     @ExceptionHandler (value={NoSuchElementException.class})
-    public Api noSuchElement(NoSuchElementException e ){
+    public ResponseEntity<Api> noSuchElement(NoSuchElementException e ){
         log.error("NoSuchElementException" ,e);
-        return Api.builder()
+        var response =  Api.builder()
                 .resultCode(String.valueOf(HttpStatus.NOT_FOUND.value()))
                 .resultMessage(HttpStatus.NOT_FOUND.getReasonPhrase())
                 .build() ;
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(response); //response entity로 한 번 감싼 api
     }
 }
 // 이 컨트롤러는 두가지 예외를 잡는다. indexoutofbound, exception을 상속받는 모든 예외
