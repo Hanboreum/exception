@@ -3,6 +3,7 @@ package com.example.exception.exception;
 import com.example.exception.controller.RestApiBController;
 import com.example.exception.controller.RestApiController;
 import com.example.exception.model.Api;
+import jdk.jfr.Experimental;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -61,6 +62,16 @@ public class RestApiExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(response); //response entity로 한 번 감싼 api
+    }
+    @ExceptionHandler(value = { NumberFormatException.class})
+    public ResponseEntity<Api> numberFormatException ( NumberFormatException e){
+        log.error("NumberFormatException", e);
+        var response = Api.builder()
+                .resultMessage(String.valueOf(HttpStatus.NOT_FOUND.value()))
+                .resultMessage(HttpStatus.NOT_FOUND.getReasonPhrase())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
     //이게 있어서 runtime에러가 안됐다. 모든에러를 잡나보다
    /* @ExceptionHandler(value ={Exception.class}) //예외를 잡아주는, 어떤 예외를 잡을 것인지 설정
