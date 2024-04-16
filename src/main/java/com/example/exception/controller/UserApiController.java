@@ -37,8 +37,8 @@ public class UserApiController {
     //user 객체가 아닌 api로 감싸진 user라는 응답을 내릴 것
     public Api<UserResponse> getUser(@PathVariable String userId){ //어노테이션 달고 파라미터는 위 {userId} 와 이름이 같아야 매핑됨
 
-        if(true) {
-            throw new RuntimeException("message");
+        if(true){
+           throw new RuntimeException("Runtime");
         }
 
         var user = userList.stream().filter(
