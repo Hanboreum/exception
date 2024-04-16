@@ -3,6 +3,7 @@ package com.example.exception.controller;
 import com.example.exception.model.Api;
 import com.example.exception.model.UserResponse;
 import org.apache.catalina.User;
+import org.springframework.boot.context.config.ConfigDataException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +36,10 @@ public class UserApiController {
     //user에 대해 특정 id를 가지는 사용자를 내려준다.
     //user 객체가 아닌 api로 감싸진 user라는 응답을 내릴 것
     public Api<UserResponse> getUser(@PathVariable String userId){ //어노테이션 달고 파라미터는 위 {userId} 와 이름이 같아야 매핑됨
+
+        if(true) {
+            throw new RuntimeException("message");
+        }
 
         var user = userList.stream().filter(
                 //it : 유저 리스트에 들어있는 빌더로 만들어진 객체
